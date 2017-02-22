@@ -1,0 +1,11 @@
+To install,please use:
+
+create table if not exists spectaculars (
+id int auto_increment primary key,
+info varchar(1000),
+uip varchar(100),
+utime varchar(100)
+)default charset=utf8;
+
+To uninstall,please use:
+drop table spectaculars;
