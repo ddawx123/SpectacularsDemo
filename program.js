@@ -114,7 +114,7 @@
 						showCancelButton: true,
 						cancelButtonText: "取消",
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "继续",
+						confirmButtonText: "确定",
 						closeOnConfirm: false
 						
 					}, 
@@ -130,34 +130,33 @@
 							},
 							success: function (data) {
 								if (data && (data.status === "pass")) {
+									$this.val('');
 									swal({
 										title: '操作成功',
 										type: 'success',
 										text: '留言已经成功被贴上去啦^-^!如果需要删除该留言，请联系站点管理人员！',
-										confirmButtonText: '好的',
-										timer: 2000
+										confirmButtonText: '确定',
+										timer: 3000
 									});
 								}
 								else {
 									swal({
 										title: '后端响应超时',
 										type: 'error',
-										text: '投递失败，本次投递将仅在本地保留！此错误可能是后端服务器宕机导致的，请联系管理员解决此问题。',
-										confirmButtonText: '再试一次',
-										timer: 2000
+										text: '糟糕，投递失败了(*>﹏<*)本次投递将仅在本地保留！此错误可能是后端服务器宕机或当前处于全局禁言状态导致的，请联系管理员解决此问题。',
+										confirmButtonText: '我知道了'
 									});
 								}
 							}
 						});
-						$this.val('');
 					});
 					return false;
 				}
 				else {
 					swal({
-						title: '无法继续',
+						title: '非法操作被阻断',
 						type: 'error',
-						text: '亲，请先填写要投递的内容哦。如果您已经输入了内容依旧显示本提示，请先升级您的浏览器。推荐使用Firefox浏览器！',
+						text: '亲，请先填写要投递的内容哦。如果您已经输入了内容依旧显示本提示，请先升级您的浏览器。推荐使用Firefox、Chromium等现代化的浏览器！',
 						confirmButtonText: '好的',
 						timer: 2000
 					});
