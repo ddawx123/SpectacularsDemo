@@ -15,9 +15,12 @@ SQL Code:
 Powered by DingStudio.Tech(Club) Copyright 2017
 */
 
-define('mysql_server_name','sqld.bcehost.com:3306');
-define('mysql_username','demouser');
-define('mysql_password','demopasswd');
-define('mysql_dbname','demodb');
+define('mysql_server_name','sqld-hk.bcehost.com:4050');
+define('mysql_username','eadd490f0da843d2b9e8d3a5cdb49982');
+define('mysql_password','ae6afa67c9f049d490eb4e63483e9a57');
+define('mysql_dbname','hEypVFlLFQsBcOBjdVbf');
 define('adminer','root');
-define('adminpasswd','123456');
+define('adminpasswd','99002103a');
+
+define('enabled','true');
+define('AddEnabled','true');

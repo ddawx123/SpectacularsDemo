@@ -1,6 +1,10 @@
 <?php
 if (file_exists('./appconf.php')) {//check app configure file.
 	include("./appconf.php");//include app configure file.
+	if (constant('enabled')=='false') {
+		header('Content-type: application/x-javascript; charset=utf-8');//javascript output standard configure
+		die('var tests = [["系统维护中"]]');
+	}
 }
 else {//if could not found app configure file,show json error output.
 	header('Content-type: application/json; charset=utf-8');//json output standard configure
@@ -30,6 +34,14 @@ switch ($act) {//action judge
 		break;
 }
 function DoAddMsg() {
+	if (constant('enabled')=='false') {
+		header('Content-type: application/json; charset=utf-8');//json output standard configure
+		die('{"status":"error"}');
+	}
+	if (constant('AddEnabled')=='false') {
+		header('Content-type: application/json; charset=utf-8');//json output standard configure
+		die('{"status":"error"}');
+	}
 	header('Content-type: application/json; charset=utf-8');//json output standard configure
 	@$res = $_POST['input'];//import post data to my resource container
 	if ($res == '') {//if my resource is null,print error.
@@ -43,7 +55,7 @@ function DoAddMsg() {
 		if (!$sqlconn) {// if not connect mysql database to show error information
 			die('{"status":"error","info":"'.$sqlconn->connect_error.'"}');
 		}
-		$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
+		//$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
 		$result=$sqlconn->query("insert into ".constant('mysql_dbname').".spectaculars (info,uip,utime) values ('{$res}','{$uip}','{$srvtime}')");//insert new information
 		
 		if ($result === TRUE) {
@@ -65,7 +77,7 @@ function DoDelMsg() {
 			if (!$sqlconn) {// if not connect mysql database to show error information
 				die('{"status":"error","info":"'.$sqlconn->connect_error.'"}');
 			}
-			$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
+			//$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
 			$result=$sqlconn->query("truncate ".constant('mysql_dbname').".spectaculars");//delete all information
 			if ($result === TRUE) {
 				echo "操作成功结束！留言墙已被成功清空。";
@@ -91,7 +103,7 @@ function DoGetMsg() {
 		if (!$sqlconn) {// if not connect mysql database to show error information
 			die('{"status":"error","info":"'.$sqlconn->connect_error.'"}');
 		}
-		$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
+		//$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
 		//$result=$sqlconn->query("select * from ".constant('mysql_dbname').".spectaculars");//get all information from database
 		$result=$sqlconn->query("select distinct info from ".constant('mysql_dbname').".spectaculars");//get message information from database
 		$css=$result->fetch_all();
@@ -105,7 +117,7 @@ function DoGetMsg() {
 			header('Content-type: application/json; charset=utf-8');//json output standard configure
 			die('{"status":"error","info":"'.$sqlconn->connect_error.'"}');
 		}
-		$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
+		//$sqlconn->query("set names 'utf-8'");//set encode of MySQL query
 		$result=$sqlconn->query("select distinct info from ".constant('mysql_dbname').".spectaculars");//get message information from database
 		$css=$result->fetch_all();
 		//echo $css;

@@ -3,14 +3,17 @@
     <head> 
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
        	<meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>小丁工作室|留言墙</title> 
+        <title>小丁工作室|匿名留言墙</title> 
         <link href="style.css" rel="stylesheet" type="text/css">
+		<script src="dist/sweetalert.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
         <script src="jquery-3.1.1.min.js" type="text/javascript"></script>
         <script src="servlet.php?act=getmsg" type="text/javascript"></script>
     </head> 
     <body> 
-        <div id="container" style="height:520px;"></div> 
+        <div id="container" style="height:520px;"></div>
         <input id="input" name="input" type="text" placeholder="随便说说吧，按回车发布。" />
         <script type="text/javascript" src="program.js"></script>
+		<div id="bgmusic" align="center" style="display: none"><audio src="//p2.music.126.net/xKD9EIoOZaoqPwx1DCHvDg==/2001111162562111.mp3" controls="controls" autoplay="autoplay" loop="loop" height="100" width="100" type="audio/mp3"><br><embed height="100" width="100" src="//p2.music.126.net/xKD9EIoOZaoqPwx1DCHvDg==/2001111162562111.mp3"><br></audio></div>
     </body>
 </html>
