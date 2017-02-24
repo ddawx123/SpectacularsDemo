@@ -115,10 +115,11 @@
 						cancelButtonText: "取消",
 						confirmButtonColor: "#DD6B55",
 						confirmButtonText: "确定",
+						showLoaderOnConfirm: true,
 						closeOnConfirm: false
-						
 					}, 
 					function(){
+						setTimeout(function(){
 						createItem(value);
 						$.ajax({
 							url: "./servlet.php?act=addmsg",
@@ -149,6 +150,7 @@
 								}
 							}
 						});
+						},1500);
 					});
 					return false;
 				}
