@@ -48,7 +48,7 @@ function DoAddMsg() {
 		die('{"status":"error"}');
 	}
 	else {//end operation finish to print pass
-		$uip = $_SERVER["REMOTE_ADDR"];//get user ip address
+		$uip = GetClientIP();//get user ip address
 		date_default_timezone_set("Asia/Shanghai");//set timezone to china
 		$srvtime = date("ymdhis",time());//get server time
 		$sqlconn = new MySQLi(constant('mysql_server_name'),constant('mysql_username'),constant('mysql_password'),constant('mysql_dbname'));
@@ -142,5 +142,15 @@ function MyErrorHandler() {
 function _get($gstr){
     $val = !empty($_GET[$gstr]) ? $_GET[$gstr] : null;
     return $val;
+}
+function GetClientIP(){//fix cdn mode can not get user ip address
+	$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	if($ip != ""){
+		$arr = explode(",",$ip);
+		return $arr[0];
+	}
+	else{
+		return $_SERVER["REMOTE_ADDR"];
+	}
 }
 ?>
